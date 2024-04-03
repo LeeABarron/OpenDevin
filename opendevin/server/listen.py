@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import agenthub # noqa F401 (we import this to get the agents registered)
 import litellm 
 from opendevin.agent import Agent
+from opendevin import config
 
 import uvicorn
 
@@ -38,6 +39,10 @@ async def get_litellm_agents():
     Get all agents supported by LiteLLM.
     """
     return Agent.listAgents()
+
+@app.get("/default-model")
+def read_default_model():
+    return config.get_or_error("LLM_MODEL")
 
 
 if __name__ == "__main__":
