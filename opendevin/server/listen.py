@@ -19,6 +19,8 @@ from opendevin.server.agent import AgentManager
 from opendevin.server.auth import get_sid_from_token, sign_token
 from opendevin.server.session import message_stack, session_manager
 
+import uvicorn
+
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
