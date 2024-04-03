@@ -5,6 +5,8 @@ import agenthub # noqa F401 (we import this to get the agents registered)
 import litellm 
 from opendevin.agent import Agent
 
+import uvicorn
+
 app = FastAPI()
 
 app.add_middleware(
@@ -36,3 +38,8 @@ async def get_litellm_agents():
     Get all agents supported by LiteLLM.
     """
     return Agent.listAgents()
+
+
+if __name__ == "__main__":
+    # debugging
+    uvicorn.run(app, host="127.0.0.1", port=3000)
